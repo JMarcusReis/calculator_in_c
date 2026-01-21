@@ -16,7 +16,6 @@ void subtracao() {
     printf("Digite o segundo numero: ");
     scanf("%f", &b);
     printf("Resultado: %f - %f = %f", a, b, a - b);
-    return;
 }
 
 void multiplicacao() {
@@ -26,7 +25,6 @@ void multiplicacao() {
     printf("Digite o segundo numero: ");
     scanf("%f", &b);
     printf("Resultado: %f * %f = %f", a, b, a * b);
-    return;
 }
 
 void divisao() {
@@ -40,7 +38,6 @@ void divisao() {
         return;
     }
     printf("Resultado: %f / %f = %f", a, b, a / b);
-    return;
 }
 
 int main() {
