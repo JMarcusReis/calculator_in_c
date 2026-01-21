@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <ctype.h>
 
 void soma() {
     float a, b;
@@ -6,7 +7,7 @@ void soma() {
     scanf("%f", &a);
     printf("Digite o segundo numero: ");
     scanf("%f", &b);
-    printf("Resultado: %f + %f = %f", a, b, a + b);
+    printf("Resultado: %f + %f = %f\n", a, b, a + b);
 }
 
 void subtracao() {
@@ -15,7 +16,7 @@ void subtracao() {
     scanf("%f", &a);
     printf("Digite o segundo numero: ");
     scanf("%f", &b);
-    printf("Resultado: %f - %f = %f", a, b, a - b);
+    printf("Resultado: %f - %f = %f\n", a, b, a - b);
 }
 
 void multiplicacao() {
@@ -24,7 +25,7 @@ void multiplicacao() {
     scanf("%f", &a);
     printf("Digite o segundo numero: ");
     scanf("%f", &b);
-    printf("Resultado: %f * %f = %f", a, b, a * b);
+    printf("Resultado: %f * %f = %f\n", a, b, a * b);
 }
 
 void divisao() {
@@ -37,46 +38,54 @@ void divisao() {
         printf("Erro: divisão por zero não é permitida.\n");
         return;
     }
-    printf("Resultado: %f / %f = %f", a, b, a / b);
+    printf("Resultado: %f / %f = %f\n", a, b, a / b);
 }
 
 int main() {
-    int answer;
+    char answer;
     char continue_answer;
+    int end_program = 0;
     while (1) {
         printf("===============================\n   Calculadora Simples\n===============================");
         printf("\n1. Adicao\n2. Subtracao\n3. Multiplicacao\n4. Divisao\n5. Sair\nOpcao: ");
-        scanf("%d", &answer);
-        if (answer == 1) {
+        scanf(" %c", &answer);
+        if (answer == '1') {
             soma();
         }
-        else if (answer == 2) {
+        else if (answer == '2') {
             subtracao();
         }
-        else if (answer == 3) {
+        else if (answer == '3') {
             multiplicacao();
         }
-        else if (answer == 4) {
+        else if (answer == '4') {
             divisao();
         }
-        else if (answer == 5){
+        else if (answer == '5'){
             printf("Obrigado por usar a calculadora! Ate a proxima.");
             break;
         }
         else {
-            printf("Resposta invalida, digite um valor correto na proxima vez");
+            printf("Resposta invalida, digite um valor correto na proxima vez\n");
             continue;
         }
-
-        printf("\nDeseja realizar outra operação? (s/n): ");
-        scanf(" %c", &continue_answer);
-        if (continue_answer == 'n') {
-            printf("Obrigado por usar a calculadora! Ate a proxima.");
-            break;
+        while (1) {
+            printf("\nDeseja realizar outra operação? (s/n): ");
+            scanf(" %c", &continue_answer);
+            if (toupper(continue_answer) == 'N') {
+                printf("Obrigado por usar a calculadora! Ate a proxima.");
+                end_program = 1;
+                break;
+            }
+            else if (toupper(continue_answer) == 'S') {
+                break;
+            }
+            else {
+                printf("Resposta invalida, digite um valor correto na proxima vez\n");
+            }
         }
-        
-        else if (continue_answer != 's') {
-            printf("Resposta invalida, digite um valor correto na proxima vez");
+        if (end_program != 0) {
+            break;
         }
     }
 }
